@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -9,12 +10,9 @@ app.use(routes);
 
 const mongoose = require("mongoose");
 
-mongoose.connect(
-  "mongodb+srv://city-action:Armall102030@cluster0.ja6oz.mongodb.net/city-action?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-app.listen(3333);
+app.listen(process.env.PORT || 3333);
